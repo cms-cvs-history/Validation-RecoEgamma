@@ -1,0 +1,34 @@
+#
+#  Author: Michael A. Balazs, University of Virginia
+#  $Id: egammaElectronAnalyzer.cfi,v 1.0 2006/11/13 15:23:02 mabalazs Exp $
+#
+module egammaElectronAnalyzer = EgammaElectrons 
+{
+	using VerificationCommonParameters
+
+  double hist_min_Size = 0
+  double hist_max_Size = 10
+  int32  hist_bins_Size = 10
+
+  double hist_min_ET = 0
+  double hist_max_ET = 50
+  int32  hist_bins_ET = 50
+
+  double hist_min_Eta = -2.5
+  double hist_max_Eta = 2.5
+  int32  hist_bins_Eta = 91
+
+  double hist_min_Phi = -3.14159
+  double hist_max_Phi = 3.14159
+  int32  hist_bins_Phi = 181
+
+  double hist_min_EoverP = 0
+  double hist_max_EoverP = 3
+  int32  hist_bins_EoverP = 30
+
+  double hist_min_deltaEtaSCtoTrack = -.05
+  double hist_max_deltaEtaSCtoTrack = .05
+  int32  hist_bins_deltaEtaSCtoTrack = 100
+
+	InputTag ElectronCollection = pixelMatchElectrons
+}
