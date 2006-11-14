@@ -1,6 +1,6 @@
 #
 #  Author: Michael A. Balazs, University of Virginia
-#  $Id: egammaSCAnalyzer.cfi,v 1.0 2006/11/13 15:23:02 mabalazs Exp $
+#  $Id: egammaElectronAnalyzer.cfi,v 1.2 2006/11/14 15:40:33 mabalazs Exp $
 #
 module egammaElectronAnalyzer = EgammaElectrons 
 {
@@ -29,6 +29,22 @@ module egammaElectronAnalyzer = EgammaElectrons
   double hist_min_deltaEtaSCtoTrack = -.05
   double hist_max_deltaEtaSCtoTrack = .05
   int32  hist_bins_deltaEtaSCtoTrack = 100
+
+  double hist_min_EToverTruth = .5
+  double hist_max_EToverTruth = 1.5
+  int32  hist_bins_EToverTruth = 100
+
+  double hist_min_deltaEta = -.025
+  double hist_max_deltaEta =  .025
+  int32  hist_bins_deltaEta = 50
+
+  double hist_min_deltaPhi = -.025
+  double hist_max_deltaPhi =  .025
+  int32  hist_bins_deltaPhi = 50
+
+  double hist_min_deltaR =  0
+  double hist_max_deltaR =  .025
+  int32  hist_bins_deltaR = 25
 
 	InputTag ElectronCollection = pixelMatchElectrons
 }
