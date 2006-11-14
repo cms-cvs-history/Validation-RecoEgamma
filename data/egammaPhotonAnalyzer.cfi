@@ -2,7 +2,7 @@
 #  Author: Michael A. Balazs, University of Virginia
 #  $Id: egammaSCAnalyzer.cfi,v 1.0 2006/11/13 15:23:02 mabalazs Exp $
 #
-module egammaElectronAnalyzer = EgammaElectrons 
+module egammaPhotonAnalyzer = EgammaPhotons 
 {
 	using VerificationCommonParameters
 
@@ -22,13 +22,5 @@ module egammaElectronAnalyzer = EgammaElectrons
   double hist_max_Phi = 3.14159
   int32  hist_bins_Phi = 181
 
-  double hist_min_EoverP = 0
-  double hist_max_EoverP = 3
-  int32  hist_bins_EoverP = 30
-
-  double hist_min_deltaEtaSCtoTrack = -.05
-  double hist_max_deltaEtaSCtoTrack = .05
-  int32  hist_bins_deltaEtaSCtoTrack = 100
-
-	InputTag ElectronCollection = pixelMatchElectrons
+	InputTag PhotonCollection = correctedPhotons
 }
