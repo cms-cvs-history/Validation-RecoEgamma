@@ -38,6 +38,5 @@ module egammaPhotonAnalyzer = EgammaPhotons
   double hist_max_deltaR =  .025
   int32  hist_bins_deltaR = 25
 
-
 	InputTag PhotonCollection = correctedPhotons
 }
