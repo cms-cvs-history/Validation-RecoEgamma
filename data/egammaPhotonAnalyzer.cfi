@@ -1,10 +1,10 @@
 #
 #  Author: Michael A. Balazs, University of Virginia
-#  $Id: egammaPhotonAnalyzer.cfi,v 1.1 2006/11/14 15:40:33 mabalazs Exp $
+#  $Id: egammaPhotonAnalyzer.cfi,v 1.3 2006/11/16 17:47:03 mabalazs Exp $
 #
 module egammaPhotonAnalyzer = EgammaPhotons 
 {
-	using VerificationCommonParameters
+  using VerificationCommonParameters
 
   double hist_min_Size = 0
   double hist_max_Size = 10
@@ -38,5 +38,9 @@ module egammaPhotonAnalyzer = EgammaPhotons
   double hist_max_deltaR =  .025
   int32  hist_bins_deltaR = 25
 
-	InputTag PhotonCollection = correctedPhotons
+  double hist_min_recoHMass = 0
+  double hist_max_recoHMass = 240
+  int32  hist_bins_recoHMass = 720
+
+  InputTag PhotonCollection = correctedPhotons
 }
