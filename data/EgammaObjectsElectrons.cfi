@@ -1,6 +1,6 @@
 module EgammaObjectsProducerElectrons = EgammaObjects
 {
-  InputTag MCTruthCollection = VtxSmeared
+  InputTag MCTruthCollection = source
   string outputFile = "SDPV_Electrons.root"
 
   int32 particleID = 11

@@ -1,6 +1,6 @@
 module EgammaObjectsProducerPhotons = EgammaObjects
 {
-  InputTag MCTruthCollection = VtxSmeared
+  InputTag MCTruthCollection = source
   string outputFile = "SDPV_Photons.root"
 
   int32 particleID = 22
