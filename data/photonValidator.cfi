@@ -62,7 +62,8 @@ module photonValidation = PhotonValidator
 
    double etaMin=-2.5
    double etaMax=2.5  
-   int32  etaBin=100	 
+   int32  etaBin=100
+   int32  etaBin2=25	 
 
    double dEtaMin=-0.2
    double dEtaMax=0.2 
@@ -72,11 +73,18 @@ module photonValidation = PhotonValidator
    double dPhiMax=0.05
    int32  dPhiBin=100	 
 
-
-
    double phiMin=-3.14
    double phiMax=3.14
    int32  phiBin=100	 
+
+
+   double rMin=0.
+   double rMax=120.
+   int32  rBin=24	 
+
+   double zMin=-220.
+   double zMax=220.
+   int32  zBin=100	 
 
 
    double r9Min=0.
