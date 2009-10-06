@@ -4,7 +4,7 @@ import os
 import dbs_discovery
 import FWCore.ParameterSet.Config as cms
 
-process = cms.Process("electronMcValidation")
+process = cms.Process("electronValidation")
 
 process.DQMStore = cms.Service("DQMStore")
 process.load("DQMServices.Components.DQMStoreStats_cfi")
@@ -18,7 +18,7 @@ process.source.fileNames.extend(dbs_discovery.search())
 process.load("Validation.RecoEgamma.ElectronMcSignalValidator_cfi")
 
 process.electronMcSignalValidator.outputFile = cms.string(os.environ['TEST_OUTPUT_FILE'])
-#process.electronMcSignalValidator.histosCfg = cms.PSet(electronMcSignalFineBining)
+#process.electronMcSignalValidator.histosCfg = cms.PSet(process.electronMcSignalFineBining)
 
 process.p = cms.Path(process.electronMcSignalValidator*process.dqmStoreStats)
 
