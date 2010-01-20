@@ -20,6 +20,7 @@ photonValidation = cms.EDAnalyzer("PhotonValidator",
     label_tp = cms.InputTag("tpSelection"),                              
     Verbosity = cms.untracked.int32(0),
     signal =  cms.bool(True),
+    MVA_weights_location = cms.string('RecoEgamma/EgammaTools/data/TMVAnalysis_Likelihood.weights.txt'),
 #
     minPhoEtCut = cms.double(0.),
     convTrackMinPtCut = cms.double(1.),

@@ -11,7 +11,7 @@
 #include "RecoEgamma/EgammaMCTools/interface/PhotonMCTruthFinder.h"
 #include "SimTracker/TrackAssociation/interface/TrackAssociatorBase.h"
 #include "MagneticField/Engine/interface/MagneticField.h"
-//#include "RecoEgamma/EgammaTools/interface/ConversionLikelihoodCalculator.h"
+#include "RecoEgamma/EgammaTools/interface/ConversionLikelihoodCalculator.h"
 //
 //DQM services
 #include "DQMServices/Core/interface/DQMStore.h"
@@ -25,8 +25,8 @@
  **  
  **
  **  $Id: PhotonValidator
- **  $Date: 2010/01/12 11:20:48 $ 
- **  $Revision: 1.29 $
+ **  $Date: 2009/08/04 18:15:18 $ 
+ **  $Revision: 1.26 $
  **  \author Nancy Marinelli, U. of Notre Dame, US
  **
  ***/
@@ -85,6 +85,10 @@ class PhotonValidator : public edm::EDAnalyzer
   edm::ESHandle<CaloGeometry> theCaloGeom_;	    
   edm::ESHandle<CaloTopology> theCaloTopo_;
 
+  std::string likelihoodWeights_;
+  ConversionLikelihoodCalculator* theLikelihoodCalc_;
+
+           
   std::string photonCollectionProducer_;       
   std::string photonCollection_;
 
@@ -415,12 +419,7 @@ class PhotonValidator : public edm::EDAnalyzer
   MonitorElement* h_scBkgPhi_;
   MonitorElement* h_phoBkgEta_;
   MonitorElement* h_phoBkgPhi_;
-  MonitorElement* h_phoBkgDEta_;
-  MonitorElement* h_phoBkgDPhi_;
-  MonitorElement* h_phoBkgE_[3];
-  MonitorElement* h_phoBkgEt_[3];
   
-
   MonitorElement* h_scBkgE_[3];
   MonitorElement* h_scBkgEt_[3];
 
@@ -480,18 +479,6 @@ class PhotonValidator : public edm::EDAnalyzer
   MonitorElement* h2_nTrkSolidConeDR04VsEtBkg_[3];
   MonitorElement* p_nTrkSolidConeDR04VsEtBkg_[3];
   //
-  MonitorElement* h_convEtaBkg_;
-  MonitorElement* h_convPhiBkg_;
-  MonitorElement* h_mvaOutBkg_[3];
-  MonitorElement* nHitsVsEtaBkg_;
-  MonitorElement* h_tkChi2Bkg_;
-  MonitorElement* h_EoverPTracksBkg_[3];
-  MonitorElement* h_PoverETracksBkg_[3];
-  MonitorElement* h_DPhiTracksAtVtxBkg_[3];
-  MonitorElement* h_DCotTracksBkg_[3];
-  MonitorElement* h_convVtxYvsXBkg_; 
-  MonitorElement* h_convVtxRvsZBkg_[2];
-
 
 
 };
