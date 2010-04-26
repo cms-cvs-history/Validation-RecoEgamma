@@ -36,11 +36,15 @@ def common_search(dbs_tier):
       result.append('file:'+line)
   else:
     url = "https://cmsweb.cern.ch:443/dbs_discovery/aSearch"
+    input = "find file"
+    separator = " where "
     if os.environ['DBS_RELEASE'] != "Any":
-      input = "find file where release = " + os.environ['DBS_RELEASE']
+      input = input + separator + "release = " + os.environ['DBS_RELEASE']
+      separator = " and "
     if os.environ['DBS_SAMPLE'] != "Any":
-      input = input + " and primds = " + os.environ['DBS_SAMPLE']
-    input = input + " and dataset like *" + os.environ['DBS_COND'] + "*" + dbs_tier + "*"
+      input = input + "primds = " + os.environ['DBS_SAMPLE']
+      separator = " and "
+    input = input + separator + "dataset like *" + os.environ['DBS_COND'] + "*" + dbs_tier + "*"
     final_input = urllib.quote(input) ;
 
     agent   = "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"
