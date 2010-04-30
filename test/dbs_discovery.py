@@ -26,6 +26,7 @@ import httplib, urllib, urllib2, types, string, os, sys
 def common_search(dbs_tier):
 
   if os.environ['DBS_RELEASE'] == "LOCAL":
+  
     result = []
     for line in  open('dbs_discovery.txt').readlines():
       line = line.strip()
@@ -34,46 +35,53 @@ def common_search(dbs_tier):
       if line.find(os.environ['DBS_COND'])== -1: continue
       if line.find(dbs_tier)== -1: continue
       result.append('file:'+line)
+      
   else:
-    url = "https://cmsweb.cern.ch:443/dbs_discovery/aSearch"
+  
     input = "find file"
     separator = " where "
     if os.environ['DBS_RELEASE'] != "Any":
       input = input + separator + "release = " + os.environ['DBS_RELEASE']
       separator = " and "
     if os.environ['DBS_SAMPLE'] != "Any":
-      input = input + "primds = " + os.environ['DBS_SAMPLE']
+      input = input + separator + "primds = " + os.environ['DBS_SAMPLE']
       separator = " and "
     input = input + separator + "dataset like *" + os.environ['DBS_COND'] + "*" + dbs_tier + "*"
-    final_input = urllib.quote(input) ;
+    
+    #url = "https://cmsweb.cern.ch:443/dbs_discovery/aSearch"
+    #final_input = urllib.quote(input) ;
+    #
+    #agent   = "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"
+    #ctypes  = "text/plain"
+    #headers = { 'User-Agent':agent, 'Accept':ctypes}
+    #params  = {'dbsInst':'cms_dbs_prod_global',
+    #           'html':0,'caseSensitive':'on','_idx':0,'pagerStep':-1,
+    #           'userInput':final_input,
+    #           'xml':0,'details':0,'cff':0,'method':'dbsapi'}
+    #data    = urllib.urlencode(params,doseq=True)
+    #req     = urllib2.Request(url, data, headers)
+    #data    = ""
+    #
+    #try:
+    #  response = urllib2.urlopen(req)
+    #  data = response.read()
+    #except urllib2.HTTPError, e:
+    #  if e.code==201:
+    #    print e.headers       
+    #    print e.msg
+    #    pass
+    #  else:
+    #    raise e
 
-    agent   = "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"
-    ctypes  = "text/plain"
-    headers = { 'User-Agent':agent, 'Accept':ctypes}
-    params  = {'dbsInst':'cms_dbs_prod_global',
-               'html':0,'caseSensitive':'on','_idx':0,'pagerStep':-1,
-               'userInput':final_input,
-               'xml':0,'details':0,'cff':0,'method':'dbsapi'}
-    data    = urllib.urlencode(params,doseq=True)
-    req     = urllib2.Request(url, data, headers)
-    data    = ""
-
-    try:
-      response = urllib2.urlopen(req)
-      data = response.read()
-    except urllib2.HTTPError, e:
-      if e.code==201:
-        print e.headers       
-        print e.msg
-        pass
-      else:
-        raise e
-
+    data = os.popen('dbs search --url="http://cmsdbsprod.cern.ch/cms_dbs_prod_global/servlet/DBSServlet" --query "'+input+'"')
+    datalines = data.readlines()
+    data.close()
     result = []
-    for line in data.split("\n"):
+    for line in datalines:
+      line = line.rstrip()
       if line != "" and line[0] =="/":
         result.append(line)
-
+    
   return result
 
 def search():
