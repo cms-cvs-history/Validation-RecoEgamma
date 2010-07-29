@@ -23,9 +23,9 @@ The VAL_* variables are configuration variables for electronValidation.csh,
 which compares the histograms from two releases. electronValidation.csh relies
 on the ROOT script electronValidation.C.
 
-<var name="VAL_NEW_RELEASE" value="380">
-<var name="VAL_REF_RELEASE" value="380pre8">
-<var name="VAL_COMMENT" value="No electron code change.">
+<var name="VAL_NEW_RELEASE" value="38Xbeta1">
+<var name="VAL_REF_RELEASE" value="380">
+<var name="VAL_COMMENT" value="New windows size for FPixel in DPhi2 ; DPhi and DRz between measured hit and expectation now with respect to the BeamSpot.">
 
 Oval is able to check the output channel of an execution and compare it with a reference output.
 The tags below are defining which are lines to be compared. The currently specification is a
@@ -66,8 +66,8 @@ This set of targets is currently used for the validation of electrons.
   <var name="VAL_HISTOS" value="ElectronMcSignalHistos.txt">
   <var name="VAL_ANALYZER" value="ElectronMcSignalValidator">
   <var name="VAL_CONFIGURATION" value="ElectronMcSignalValidation_cfg.py">
-  <!--var name="DBS_RELEASE" value="LOCAL"-->
-  <!--var name="DBS_COND" value="MC"-->
+  <var name="DBS_RELEASE" value="LOCAL">
+  <var name="DBS_COND" value="MC">
 
   <environment name="FullPt35">
     <var name="DBS_SAMPLE" value="RelValSingleElectronPt35">
