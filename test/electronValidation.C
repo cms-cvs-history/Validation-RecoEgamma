@@ -215,6 +215,7 @@ int electronValidation()
   TCanvas * canvas ;
   TH1 * histo_ref, * histo_new ;
   TPaveStats * st_ref, * st_new ;
+  Int_t n_ele_charge ;
 
   std::ofstream web_page(index_path.c_str()) ;
 
@@ -349,6 +350,7 @@ int electronValidation()
   web_page<<"<br><br><table cellpadding=\"5\"><tr valign=\"top\"><td><a href=\""<<val_web_url_path<<"\"><img width=\"18\" height=\"18\" border=\"0\" align=\"middle\" src=\"../../../../img/up.gif\" alt=\"Top\"/></a></td><td>\n" ;
   std::ifstream histo_file2(histos_path.c_str()) ;
 
+  n_ele_charge = 0 ;
   cat = "" ;
   do
    {
@@ -401,11 +403,14 @@ int electronValidation()
     histo_new = (TH1 *)file_new->Get(histo_full_path) ;
 
     // special treatments
-    if ((scaled==1)&&(file_ref!=0)&&(histo_ref!=0)&&(histo_ref->GetEntries()!=0))
+    if ((scaled==1)&&(histo_new!=0)&&(histo_ref!=0)&&(histo_ref->GetEntries()!=0))
      {
       Int_t new_entries = histo_new->GetEntries() ;
       if (new_entries==0) { new_entries = n_ele_charge ; }
-      histo_ref->Scale(new_entries/histo_ref->GetEntries()) ;
+      if (new_entries==0)
+       { std::cerr<<"DO NOT KNOW HOW TO RESCALE "<<histo_name<<std::endl ; }
+      else
+       { histo_ref->Scale(new_entries/histo_ref->GetEntries()) ; }
      }
 
     if (histo_new==0)
@@ -414,6 +419,10 @@ int electronValidation()
      }
     else
      {
+      // catch n_ele_charge
+      if (histo_name=="h_ele_charge")
+       { n_ele_charge = histo_new->GetEntries() ; }
+     
       // draw histo_new
       TString newDrawOptions(err==1?"E1 P":"hist") ;
       gErrorIgnoreLevel = kWarning ;
