@@ -17,13 +17,12 @@
 
 #=============BEGIN CONFIGURATION=================
 setenv TYPE Photons
-setenv CMSSWver1 3_9_0
-setenv CMSSWver2 3_9_0
-
-setenv OLDRELEASE 390
-setenv NEWRELEASE 390
-setenv OLDPRERELEASE pre2
-setenv NEWPRERELEASE pre3
+setenv CMSSWver1 3_8_0
+setenv CMSSWver2 3_8_0
+setenv OLDRELEASE 380
+setenv NEWRELEASE 380
+setenv OLDPRERELEASE pre7 
+setenv NEWPRERELEASE pre8
 
 setenv OLDRELEASE ${OLDRELEASE}${OLDPRERELEASE}
 setenv NEWRELEASE ${NEWRELEASE}${NEWPRERELEASE}
@@ -35,6 +34,7 @@ setenv NEWRELEASE ${NEWRELEASE}${NEWPRERELEASE}
 
 #setenv WorkDir1   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver1}_${OLDPRERELEASE}/src/Validation/RecoEgamma/test
 #setenv WorkDir2   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver2}/src/Validation/RecoEgamma/test
+
 
 setenv WorkDir1   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver1}_${OLDPRERELEASE}/src/Validation/RecoEgamma/test
 setenv WorkDir2   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver2}_${NEWPRERELEASE}/src/Validation/RecoEgamma/test
@@ -52,10 +52,10 @@ setenv WorkDir2   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver
 #setenv SAMPLE PhotonJetPt80
 #setenv SAMPLE PhotonJetPt470
 
-#setenv SAMPLE SingleGammaPt10IDEAL
+setenv SAMPLE SingleGammaPt10IDEAL
 #setenv SAMPLE SingleGammaPt35IDEAL
 #setenv SAMPLE SingleGammaFlatPt10_100
-setenv SAMPLE H130GGgluonfusionSTARTUP
+#setenv SAMPLE H130GGgluonfusionSTARTUP
 #setenv SAMPLE PhotonJets_Pt_10
 #setenv SAMPLE GammaJets_Pt_80_120STARTUP
 #setenv SAMPLE QCD_Pt_80_120STARTUP
@@ -81,13 +81,6 @@ else if ($SAMPLE == SingleGammaPt35IDEAL) then
 
 setenv OLDFILE ${WorkDir1}/PhotonValidationRelVal${OLDRELEASE}_SingleGammaPt35.root
 setenv NEWFILE ${WorkDir2}/PhotonValidationRelVal${NEWRELEASE}_SingleGammaPt35.root
-
-
-else if ($SAMPLE == SingleGammaFlatPt10_100IDEAL) then 
-
-setenv OLDFILE ${WorkDir1}/PhotonValidationRelVal${OLDRELEASE}_SingleGammaFlatPt10To100.root
-setenv NEWFILE ${WorkDir2}/PhotonValidationRelVal${NEWRELEASE}_SingleGammaFlatPt10To100.root
-
 
 else if ($SAMPLE == H130GGgluonfusionSTARTUP) then 
 
@@ -165,20 +158,17 @@ cat > efficiencyForPhotons <<EOF
   deadChVsEt
 EOF
 
-
-#  gamgamMassAll
-#  gamgamMassBarrel
-#  gamgamMassEndcap
-#  gamgamMassNoConvAll
-#  gamgamMassNoConvBarrel
-#  gamgamMassNoConvEndcap
-#  gamgamMassConvAll
-#  gamgamMassConvBarrel
-#  gamgamMassConvEndcap
-
-
 cat > scaledhistosForPhotons <<EOF
 
+  gamgamMassAll
+  gamgamMassBarrel
+  gamgamMassEndcap
+  gamgamMassNoConvAll
+  gamgamMassNoConvBarrel
+  gamgamMassNoConvEndcap
+  gamgamMassConvAll
+  gamgamMassConvBarrel
+  gamgamMassConvEndcap
   scEta
   scPhi
   scEAll
@@ -245,9 +235,6 @@ scpEResVsR9Endcap
 pEResVsEtAll
 pEResVsEtBarrel
 pEResVsEtEndcap
-pEResVsEtaAll
-pEResVsEtaUnconv
-pEResVsEtaConv
 pEcalRecHitSumEtConeDR04VsEtaAll
 pEcalRecHitSumEtConeDR04VsEtBarrel
 pEcalRecHitSumEtConeDR04VsEtEndcap
@@ -314,18 +301,6 @@ cat > scaledhistosForConvertedPhotons <<EOF
   PoverEtracksAll
   PoverEtracksBarrel 
   PoverEtracksEndcap
-  convVtxdR
-  convVtxdR_barrel
-  convVtxdR_endcap
-  convVtxdZ
-  convVtxdZ_barrel
-  convVtxdZ_endcap
-  convVtxdX
-  convVtxdX_barrel
-  convVtxdX_endcap
-  convVtxdY
-  convVtxdY_barrel
-  convVtxdY_endcap
   mvaOutAll
   mvaOutBarrel
   mvaOutEndcap
