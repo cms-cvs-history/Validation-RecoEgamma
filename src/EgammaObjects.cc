@@ -603,7 +603,7 @@ float EgammaObjects::ecalEta(float EtaParticle , float Zvertex, float plane_Radi
 
 		float ETA = - log(tan(0.5*Theta));
 
-		if( std::abs(ETA) > etaBarrelEndcap )
+		if( fabs(ETA) > etaBarrelEndcap )
 		{
 			float Zend = Z_Endcap ;
 			if(EtaParticle<0.0 )  Zend = -Zend ;
