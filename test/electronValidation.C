@@ -90,7 +90,6 @@ void RenderHisto( TObject * obj )
 int electronValidation()
  {
   TString DBS_SAMPLE = gSystem->Getenv("DBS_SAMPLE") ;
-  TString DBS_COND = gSystem->Getenv("DBS_COND") ;
 
   TString val_ref_file_name = gSystem->Getenv("VAL_REF_FILE") ;
   TString val_new_file_name = gSystem->Getenv("VAL_NEW_FILE") ;
@@ -224,9 +223,9 @@ int electronValidation()
     <<"<html>\n"
     <<"<head>\n"
     <<"<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\" />\n"
-    <<"<title>"<<val_new_release<<" vs "<<val_ref_release<<" / "<<DBS_SAMPLE<<" / "<<DBS_COND<<"</title>\n"
+    <<"<title>"<<val_new_release<<" vs "<<val_ref_release<<" / "<<DBS_SAMPLE<<"</title>\n"
     <<"</head>\n"
-    <<"<h1><a href=\"../\"><img border=0 width=\"22\" height=\"22\" src=\"../../../../img/up.gif\" alt=\"Up\"/></a>&nbsp;"<<val_new_release<<" vs "<<val_ref_release<<" / "<<DBS_SAMPLE<<" / "<<DBS_COND<<"</h1>\n" ;
+    <<"<h1><a href=\"../\"><img border=0 width=\"22\" height=\"22\" src=\"../../../../img/up.gif\" alt=\"Up\"/></a>&nbsp;"<<val_new_release<<" vs "<<val_ref_release<<" / "<<DBS_SAMPLE<<"</h1>\n" ;
 
   web_page<<"<p>"<<val_comment ;
   if (file_ref==0)
@@ -423,7 +422,7 @@ int electronValidation()
       // catch n_ele_charge
       if (histo_name=="h_ele_charge")
        { n_ele_charge = histo_new->GetEntries() ; }
-
+     
       // draw histo_new
       TString newDrawOptions(err==1?"E1 P":"hist") ;
       gErrorIgnoreLevel = kWarning ;
@@ -465,10 +464,10 @@ int electronValidation()
         canvas->Update() ;
         st_ref = (TPaveStats*)histo_ref->FindObject("stats");
         st_ref->SetTextColor(kBlue) ;
-        Double_t y1 = st_ref->GetY1NDC() ;
-        Double_t y2 = st_ref->GetY2NDC() ;
-        st_ref->SetY1NDC(2*y1-y2) ;
-        st_ref->SetY2NDC(y1) ;
+//        Double_t y1 = st_ref->GetY1NDC() ;
+//        Double_t y2 = st_ref->GetY2NDC() ;
+//        st_ref->SetY1NDC(2*y1-y2) ;
+//        st_ref->SetY2NDC(y1) ;
        }
 
       // Redraws
