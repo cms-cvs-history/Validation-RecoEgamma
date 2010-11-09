@@ -28,7 +28,7 @@ def common_search(dbs_tier):
   if os.environ['DBS_RELEASE'] == "LOCAL":
   
     result = []
-    for line in  open('dbs_discovery.txt').readlines():
+    for line in  open('electronDbsDiscovery.txt').readlines():
       line = line.strip()
       if line == "": continue
       if line.find(os.environ['DBS_SAMPLE'])== -1: continue
