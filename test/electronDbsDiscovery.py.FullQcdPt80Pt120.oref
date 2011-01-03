@@ -1,0 +1,49 @@
+
+[oval run] =================================================
+[oval run] USER : chamont
+[oval run] HOST : lxplus446.cern.ch
+[oval run] TEST_RELEASE = 3_11_0_pre2
+[oval run] TEST_GLOBAL_TAG = MC_310_V3
+[oval run] TEST_GLOBAL_STARTUP_TAG = START310_V3
+[oval run] TEST_GLOBAL_VERSION = v1
+[oval run] TEST_OUTPUT_FILE = electronHistos.root
+[oval run] DBS_RELEASE = CMSSW_${TEST_RELEASE}
+[oval run] DBS_TIER = -RECO
+[oval run] DBS_COND = ${TEST_GLOBAL_TAG}-${TEST_GLOBAL_VERSION}
+[oval run] VAL_NEW_RELEASE = 3_11_0_pre2
+[oval run] VAL_REF_RELEASE = 3_10_0
+[oval run] VAL_COMMENT = No electron code change.
+[oval run] STORE_RELEASE = ${VAL_NEW_RELEASE}
+[oval run] VAL_WEB = /afs/cern.ch/cms/Physics/egamma/www/validation
+[oval run] VAL_WEB_URL = http://cmsdoc.cern.ch/Physics/egamma/www/validation
+[oval run] STORE_WEB = ${VAL_WEB}
+[oval run] TEST_AFS_DIR = /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation
+[oval run] VAL_HISTOS = ElectronMcSignalHistos.txt
+[oval run] VAL_ANALYZER = ElectronMcSignalValidator
+[oval run] VAL_CONFIGURATION = ElectronMcSignalValidation_cfg.py
+[oval run] DBS_SAMPLE = RelValQCD_Pt_80_120
+[oval run] VAL_HISTOS = ElectronMcFakeHistos.txt
+[oval run] VAL_ANALYZER = ElectronMcFakeValidator
+[oval run] VAL_CONFIGURATION = ElectronMcFakeValidation_cfg.py
+[oval run] electronDbsDiscovery.txt:
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValSingleElectronPt10-MC-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValSingleElectronPt35-MC-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValTTbar-MC-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-MC-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-START-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValQCD_Pt_80_120-MC-RECO.root
+[oval run] run tool: scram
+[oval run] final instruction: ./electronDbsDiscovery.py
+[oval run] =================================================
+
+dataset has 5 files:
+/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0058/F81A8DA2-DA14-E011-BA57-002618943981.root
+/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0055/D449DCDE-7114-E011-A953-0018F3D09702.root
+/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0055/B6A4998F-6214-E011-820C-001A92971B9A.root
+/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0055/AA1D324D-6814-E011-97DE-0026189438FD.root
+/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0055/00FCA317-6614-E011-8760-001A92811738.root
+
+[oval run] ==========================================
+[oval run] result: OK
+[oval run] ==========================================
+

@@ -1,0 +1,49 @@
+
+[oval run] =================================================
+[oval run] USER : chamont
+[oval run] HOST : lxplus446.cern.ch
+[oval run] TEST_RELEASE = 3_11_0_pre2
+[oval run] TEST_GLOBAL_TAG = MC_310_V3
+[oval run] TEST_GLOBAL_STARTUP_TAG = START310_V3
+[oval run] TEST_GLOBAL_VERSION = v1
+[oval run] TEST_OUTPUT_FILE = electronHistos.root
+[oval run] DBS_RELEASE = CMSSW_${TEST_RELEASE}
+[oval run] DBS_TIER = -RECO
+[oval run] DBS_COND = ${TEST_GLOBAL_TAG}-${TEST_GLOBAL_VERSION}
+[oval run] VAL_NEW_RELEASE = 3_11_0_pre2
+[oval run] VAL_REF_RELEASE = 3_10_0
+[oval run] VAL_COMMENT = No electron code change.
+[oval run] STORE_RELEASE = ${VAL_NEW_RELEASE}
+[oval run] VAL_WEB = /afs/cern.ch/cms/Physics/egamma/www/validation
+[oval run] VAL_WEB_URL = http://cmsdoc.cern.ch/Physics/egamma/www/validation
+[oval run] STORE_WEB = ${VAL_WEB}
+[oval run] TEST_AFS_DIR = /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation
+[oval run] VAL_HISTOS = ElectronMcSignalHistos.txt
+[oval run] VAL_ANALYZER = ElectronMcSignalValidator
+[oval run] VAL_CONFIGURATION = ElectronMcSignalValidation_cfg.py
+[oval run] DBS_SAMPLE = RelValTTbar
+[oval run] electronDbsDiscovery.txt:
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValSingleElectronPt10-MC-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValSingleElectronPt35-MC-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValTTbar-MC-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-MC-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-START-RECO.root
+[oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValQCD_Pt_80_120-MC-RECO.root
+[oval run] run tool: scram
+[oval run] final instruction: ./electronDbsDiscovery.py
+[oval run] =================================================
+
+dataset has 8 files:
+/store/relval/CMSSW_3_11_0_pre2/RelValTTbar/GEN-SIM-RECO/MC_310_V3-v1/0057/3A8CB368-D114-E011-A92A-0026189437E8.root
+/store/relval/CMSSW_3_11_0_pre2/RelValTTbar/GEN-SIM-RECO/MC_310_V3-v1/0055/DAE18CE1-7A14-E011-9A6E-0018F3D09676.root
+/store/relval/CMSSW_3_11_0_pre2/RelValTTbar/GEN-SIM-RECO/MC_310_V3-v1/0055/BA7248AC-7414-E011-8AB1-0018F3D0970E.root
+/store/relval/CMSSW_3_11_0_pre2/RelValTTbar/GEN-SIM-RECO/MC_310_V3-v1/0055/7279AFEC-7214-E011-BAA0-00261894384F.root
+/store/relval/CMSSW_3_11_0_pre2/RelValTTbar/GEN-SIM-RECO/MC_310_V3-v1/0055/5ACC04C8-7014-E011-B6CE-001BFCDBD182.root
+/store/relval/CMSSW_3_11_0_pre2/RelValTTbar/GEN-SIM-RECO/MC_310_V3-v1/0055/4CE7158E-6E14-E011-8324-001A92811738.root
+/store/relval/CMSSW_3_11_0_pre2/RelValTTbar/GEN-SIM-RECO/MC_310_V3-v1/0055/48095CE1-7A14-E011-906A-0018F3D096DA.root
+/store/relval/CMSSW_3_11_0_pre2/RelValTTbar/GEN-SIM-RECO/MC_310_V3-v1/0055/2E137EC7-7814-E011-A194-0018F3D096DC.root
+
+[oval run] ==========================================
+[oval run] result: OK
+[oval run] ==========================================
+

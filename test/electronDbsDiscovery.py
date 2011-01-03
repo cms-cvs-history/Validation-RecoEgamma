@@ -94,13 +94,19 @@ if __name__ == "__main__":
   if not os.environ.has_key('DBS_TIER_SECONDARY'):
     os.environ['DBS_TIER_SECONDARY'] = ""
   if os.environ['DBS_TIER_SECONDARY'] == "":
-    for file in search():
+    files = search()
+    print "dataset has", len(files), "files:"
+    for file in files:
       print file
   else:
-    for file in search():
-      print "primary:"+file
-    for file in search2():
-      print "secondary:"+file
+    files = search()
+    print "dataset has", len(files), "primary files:"
+    for file in files:
+      print file
+    files = search2()
+    print "dataset has", len(files), "secondary files:"
+    for file in files:
+      print file
 
 	
 	
