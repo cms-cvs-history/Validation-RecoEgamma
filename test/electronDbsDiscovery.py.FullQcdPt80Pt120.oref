@@ -1,17 +1,20 @@
 
 [oval run] =================================================
 [oval run] USER : chamont
-[oval run] HOST : lxplus446.cern.ch
-[oval run] TEST_RELEASE = 3_11_0_pre2
+[oval run] HOST : lxplus402.cern.ch
+[oval run] OVAL_ENVNAME = FullQcdPt80Pt120
+[oval run] TEST_RELEASE = 3_11_0_pre3
 [oval run] TEST_GLOBAL_TAG = MC_310_V3
 [oval run] TEST_GLOBAL_STARTUP_TAG = START310_V3
 [oval run] TEST_GLOBAL_VERSION = v1
-[oval run] TEST_OUTPUT_FILE = electronHistos.root
+[oval run] TEST_OUTPUT_BASE = electronHistos.root
+[oval run] TEST_OUTPUT_FILE = electronHistos.${OVAL_ENVNAME}.root
+[oval run] TEST_OUTPUT_LOGS = *.${OVAL_ENVNAME}.olog
 [oval run] DBS_RELEASE = CMSSW_${TEST_RELEASE}
 [oval run] DBS_TIER = -RECO
 [oval run] DBS_COND = ${TEST_GLOBAL_TAG}-${TEST_GLOBAL_VERSION}
-[oval run] VAL_NEW_RELEASE = 3_11_0_pre2
-[oval run] VAL_REF_RELEASE = 3_10_0
+[oval run] VAL_NEW_RELEASE = 3_11_0_pre3
+[oval run] VAL_REF_RELEASE = 3_11_0_pre2
 [oval run] VAL_COMMENT = No electron code change.
 [oval run] STORE_RELEASE = ${VAL_NEW_RELEASE}
 [oval run] VAL_WEB = /afs/cern.ch/cms/Physics/egamma/www/validation
@@ -33,17 +36,73 @@
 [oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-START-RECO.root
 [oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValQCD_Pt_80_120-MC-RECO.root
 [oval run] run tool: scram
+[oval run] error: /(?-xism:^dataset has 0 files:$)/
 [oval run] final instruction: ./electronDbsDiscovery.py
 [oval run] =================================================
 
-dataset has 5 files:
-/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0058/F81A8DA2-DA14-E011-BA57-002618943981.root
-/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0055/D449DCDE-7114-E011-A953-0018F3D09702.root
-/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0055/B6A4998F-6214-E011-820C-001A92971B9A.root
-/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0055/AA1D324D-6814-E011-97DE-0026189438FD.root
-/store/relval/CMSSW_3_11_0_pre2/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0055/00FCA317-6614-E011-8760-001A92811738.root
+dataset has 8 files:
+/store/relval/CMSSW_3_11_0_pre3/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0060/CEC9D406-D11A-E011-94D4-003048678FF2.root
+/store/relval/CMSSW_3_11_0_pre3/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0058/F820BE06-711A-E011-A755-00261894392C.root
+/store/relval/CMSSW_3_11_0_pre3/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0058/F4E4B5E5-661A-E011-981B-0026189437F0.root
+/store/relval/CMSSW_3_11_0_pre3/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0058/DAE6CD6C-671A-E011-8944-0018F3D096C6.root
+/store/relval/CMSSW_3_11_0_pre3/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0058/CC13A778-681A-E011-977A-0026189437EB.root
+/store/relval/CMSSW_3_11_0_pre3/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0058/468577FF-6B1A-E011-B1E0-003048679180.root
+/store/relval/CMSSW_3_11_0_pre3/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0058/428ABB72-681A-E011-A953-00261894397A.root
+/store/relval/CMSSW_3_11_0_pre3/RelValQCD_Pt_80_120/GEN-SIM-RECO/MC_310_V3-v1/0058/2E7E667D-691A-E011-9683-00248C65A3EC.root
 
 [oval run] ==========================================
 [oval run] result: OK
 [oval run] ==========================================
+
+[oval diff] ================================================
+[oval diff] OVAL_ENVNAME = FullQcdPt80Pt120
+[oval diff] TEST_RELEASE = 3_11_0_pre3
+[oval diff] TEST_GLOBAL_TAG = MC_310_V3
+[oval diff] TEST_GLOBAL_STARTUP_TAG = START310_V3
+[oval diff] TEST_GLOBAL_VERSION = v1
+[oval diff] TEST_OUTPUT_BASE = electronHistos.root
+[oval diff] TEST_OUTPUT_FILE = electronHistos.${OVAL_ENVNAME}.root
+[oval diff] TEST_OUTPUT_LOGS = *.${OVAL_ENVNAME}.olog
+[oval diff] DBS_RELEASE = CMSSW_${TEST_RELEASE}
+[oval diff] DBS_TIER = -RECO
+[oval diff] DBS_COND = ${TEST_GLOBAL_TAG}-${TEST_GLOBAL_VERSION}
+[oval diff] VAL_NEW_RELEASE = 3_11_0_pre3
+[oval diff] VAL_REF_RELEASE = 3_11_0_pre2
+[oval diff] VAL_COMMENT = No electron code change.
+[oval diff] STORE_RELEASE = ${VAL_NEW_RELEASE}
+[oval diff] VAL_WEB = /afs/cern.ch/cms/Physics/egamma/www/validation
+[oval diff] VAL_WEB_URL = http://cmsdoc.cern.ch/Physics/egamma/www/validation
+[oval diff] STORE_WEB = ${VAL_WEB}
+[oval diff] TEST_AFS_DIR = /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation
+[oval diff] VAL_HISTOS = ElectronMcSignalHistos.txt
+[oval diff] VAL_ANALYZER = ElectronMcSignalValidator
+[oval diff] VAL_CONFIGURATION = ElectronMcSignalValidation_cfg.py
+[oval diff] DBS_SAMPLE = RelValQCD_Pt_80_120
+[oval diff] VAL_HISTOS = ElectronMcFakeHistos.txt
+[oval diff] VAL_ANALYZER = ElectronMcFakeValidator
+[oval diff] VAL_CONFIGURATION = ElectronMcFakeValidation_cfg.py
+[oval diff] electronDbsDiscovery.txt:
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValSingleElectronPt10-MC-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValSingleElectronPt35-MC-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValTTbar-MC-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-MC-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-START-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValQCD_Pt_80_120-MC-RECO.root
+[oval diff] diff line: /(?-xism:^(TH1.Print Name  = [a-zA-Z_]+, Entries= ).*$)/
+[oval diff] diff line: /(?-xism:^(h_\S+ has )\d+ entries of mean value \S+$)/
+[oval diff] diff number: /(?-xism:^dataset has (\d+) files:$)/ ~ 1
+[oval diff] diff number: /(?-xism:^TH1.Print Name  = [a-zA-Z_]+, Entries= (\d+),.*$)/ ~ 20%
+[oval diff] diff number: /(?-xism:^TH1.Print Name  = [a-zA-Z_]+, Entries= \d+, Total sum= (\S+)$)/ ~ 10%
+[oval diff] diff number: /(?-xism:^h_\S+ has (\d+) entries of mean value \S+$)/ ~ 20%
+[oval diff] diff number: /(?-xism:^h_\S+ has \d+ entries of mean value (\S+)$)/ ~ 10%
+[oval diff] ================================================
+
+=== olog #43 !~ oref #39 (>1)
+olog: dataset has 8 files:
+---
+oref: dataset has 5 files:
+
+[oval diff] =========================================
+[oval diff] result: DIFFS
+[oval diff] =========================================
 

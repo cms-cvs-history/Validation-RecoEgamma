@@ -1,17 +1,20 @@
 
 [oval run] =================================================
 [oval run] USER : chamont
-[oval run] HOST : lxplus446.cern.ch
-[oval run] TEST_RELEASE = 3_11_0_pre2
+[oval run] HOST : lxplus402.cern.ch
+[oval run] OVAL_ENVNAME = FullZEEIdeal
+[oval run] TEST_RELEASE = 3_11_0_pre3
 [oval run] TEST_GLOBAL_TAG = MC_310_V3
 [oval run] TEST_GLOBAL_STARTUP_TAG = START310_V3
 [oval run] TEST_GLOBAL_VERSION = v1
-[oval run] TEST_OUTPUT_FILE = electronHistos.root
+[oval run] TEST_OUTPUT_BASE = electronHistos.root
+[oval run] TEST_OUTPUT_FILE = electronHistos.${OVAL_ENVNAME}.root
+[oval run] TEST_OUTPUT_LOGS = *.${OVAL_ENVNAME}.olog
 [oval run] DBS_RELEASE = CMSSW_${TEST_RELEASE}
 [oval run] DBS_TIER = -RECO
 [oval run] DBS_COND = ${TEST_GLOBAL_TAG}-${TEST_GLOBAL_VERSION}
-[oval run] VAL_NEW_RELEASE = 3_11_0_pre2
-[oval run] VAL_REF_RELEASE = 3_10_0
+[oval run] VAL_NEW_RELEASE = 3_11_0_pre3
+[oval run] VAL_REF_RELEASE = 3_11_0_pre2
 [oval run] VAL_COMMENT = No electron code change.
 [oval run] STORE_RELEASE = ${VAL_NEW_RELEASE}
 [oval run] VAL_WEB = /afs/cern.ch/cms/Physics/egamma/www/validation
@@ -30,14 +33,67 @@
 [oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-START-RECO.root
 [oval run]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValQCD_Pt_80_120-MC-RECO.root
 [oval run] run tool: scram
+[oval run] error: /(?-xism:^dataset has 0 files:$)/
 [oval run] final instruction: ./electronDbsDiscovery.py
 [oval run] =================================================
 
-dataset has 2 files:
-/store/relval/CMSSW_3_11_0_pre2/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0058/F8702299-DA14-E011-9990-002618943944.root
-/store/relval/CMSSW_3_11_0_pre2/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0055/DCDE0AC4-7014-E011-AE9F-001A92810AC4.root
+dataset has 5 files:
+/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0060/5C6C8EFE-D01A-E011-8BC9-0026189438D9.root
+/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0059/EAEC4D91-7A1A-E011-8674-0030486790C0.root
+/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0059/90A1B883-771A-E011-85B4-002618FDA279.root
+/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0059/66E87512-781A-E011-9FA8-0018F3D0965C.root
+/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0059/3620D716-791A-E011-815F-002618B27F8A.root
 
 [oval run] ==========================================
 [oval run] result: OK
 [oval run] ==========================================
+
+[oval diff] ================================================
+[oval diff] OVAL_ENVNAME = FullZEEIdeal
+[oval diff] TEST_RELEASE = 3_11_0_pre3
+[oval diff] TEST_GLOBAL_TAG = MC_310_V3
+[oval diff] TEST_GLOBAL_STARTUP_TAG = START310_V3
+[oval diff] TEST_GLOBAL_VERSION = v1
+[oval diff] TEST_OUTPUT_BASE = electronHistos.root
+[oval diff] TEST_OUTPUT_FILE = electronHistos.${OVAL_ENVNAME}.root
+[oval diff] TEST_OUTPUT_LOGS = *.${OVAL_ENVNAME}.olog
+[oval diff] DBS_RELEASE = CMSSW_${TEST_RELEASE}
+[oval diff] DBS_TIER = -RECO
+[oval diff] DBS_COND = ${TEST_GLOBAL_TAG}-${TEST_GLOBAL_VERSION}
+[oval diff] VAL_NEW_RELEASE = 3_11_0_pre3
+[oval diff] VAL_REF_RELEASE = 3_11_0_pre2
+[oval diff] VAL_COMMENT = No electron code change.
+[oval diff] STORE_RELEASE = ${VAL_NEW_RELEASE}
+[oval diff] VAL_WEB = /afs/cern.ch/cms/Physics/egamma/www/validation
+[oval diff] VAL_WEB_URL = http://cmsdoc.cern.ch/Physics/egamma/www/validation
+[oval diff] STORE_WEB = ${VAL_WEB}
+[oval diff] TEST_AFS_DIR = /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation
+[oval diff] VAL_HISTOS = ElectronMcSignalHistos.txt
+[oval diff] VAL_ANALYZER = ElectronMcSignalValidator
+[oval diff] VAL_CONFIGURATION = ElectronMcSignalValidation_cfg.py
+[oval diff] DBS_SAMPLE = RelValZEE
+[oval diff] electronDbsDiscovery.txt:
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValSingleElectronPt10-MC-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValSingleElectronPt35-MC-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValTTbar-MC-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-MC-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValZEE-START-RECO.root
+[oval diff]   /afs/cern.ch/cms/CAF/CMSPHYS/PHYS_EGAMMA/electrons/chamont/Validation/RelValQCD_Pt_80_120-MC-RECO.root
+[oval diff] diff line: /(?-xism:^(TH1.Print Name  = [a-zA-Z_]+, Entries= ).*$)/
+[oval diff] diff line: /(?-xism:^(h_\S+ has )\d+ entries of mean value \S+$)/
+[oval diff] diff number: /(?-xism:^dataset has (\d+) files:$)/ ~ 1
+[oval diff] diff number: /(?-xism:^TH1.Print Name  = [a-zA-Z_]+, Entries= (\d+),.*$)/ ~ 20%
+[oval diff] diff number: /(?-xism:^TH1.Print Name  = [a-zA-Z_]+, Entries= \d+, Total sum= (\S+)$)/ ~ 10%
+[oval diff] diff number: /(?-xism:^h_\S+ has (\d+) entries of mean value \S+$)/ ~ 20%
+[oval diff] diff number: /(?-xism:^h_\S+ has \d+ entries of mean value (\S+)$)/ ~ 10%
+[oval diff] ================================================
+
+=== olog #40 !~ oref #36 (>1)
+olog: dataset has 5 files:
+---
+oref: dataset has 2 files:
+
+[oval diff] =========================================
+[oval diff] result: DIFFS
+[oval diff] =========================================
 
