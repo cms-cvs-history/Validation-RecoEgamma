@@ -1,11 +1,11 @@
 
 [oval run] =================================================
 [oval run] USER : chamont
-[oval run] HOST : lxplus402.cern.ch
+[oval run] HOST : lxplus447.cern.ch
 [oval run] OVAL_ENVNAME = FullZEEIdeal
-[oval run] TEST_RELEASE = 3_11_0_pre3
-[oval run] TEST_GLOBAL_TAG = MC_310_V3
-[oval run] TEST_GLOBAL_STARTUP_TAG = START310_V3
+[oval run] TEST_RELEASE = 3_11_0_pre5
+[oval run] TEST_GLOBAL_TAG = MC_311_V0
+[oval run] TEST_GLOBAL_STARTUP_TAG = START311_V0
 [oval run] TEST_GLOBAL_VERSION = v1
 [oval run] TEST_OUTPUT_BASE = electronHistos.root
 [oval run] TEST_OUTPUT_FILE = electronHistos.${OVAL_ENVNAME}.root
@@ -13,8 +13,8 @@
 [oval run] DBS_RELEASE = CMSSW_${TEST_RELEASE}
 [oval run] DBS_TIER = -RECO
 [oval run] DBS_COND = ${TEST_GLOBAL_TAG}-${TEST_GLOBAL_VERSION}
-[oval run] VAL_NEW_RELEASE = 3_11_0_pre3
-[oval run] VAL_REF_RELEASE = 3_11_0_pre2
+[oval run] VAL_NEW_RELEASE = 3_11_0_pre5
+[oval run] VAL_REF_RELEASE = 3_11_0_pre3
 [oval run] VAL_COMMENT = No electron code change.
 [oval run] STORE_RELEASE = ${VAL_NEW_RELEASE}
 [oval run] VAL_WEB = /afs/cern.ch/cms/Physics/egamma/www/validation
@@ -38,11 +38,11 @@
 [oval run] =================================================
 
 dataset has 5 files:
-/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0060/5C6C8EFE-D01A-E011-8BC9-0026189438D9.root
-/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0059/EAEC4D91-7A1A-E011-8674-0030486790C0.root
-/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0059/90A1B883-771A-E011-85B4-002618FDA279.root
-/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0059/66E87512-781A-E011-9FA8-0018F3D0965C.root
-/store/relval/CMSSW_3_11_0_pre3/RelValZEE/GEN-SIM-RECO/MC_310_V3-v1/0059/3620D716-791A-E011-815F-002618B27F8A.root
+/store/relval/CMSSW_3_11_0_pre5/RelValZEE/GEN-SIM-RECO/MC_311_V0-v1/0065/D401A468-1224-E011-80B1-003048D15DDA.root
+/store/relval/CMSSW_3_11_0_pre5/RelValZEE/GEN-SIM-RECO/MC_311_V0-v1/0064/22D1B44F-E423-E011-BC73-001A92971B0C.root
+/store/relval/CMSSW_3_11_0_pre5/RelValZEE/GEN-SIM-RECO/MC_311_V0-v1/0063/B671B5BE-DB23-E011-AB8B-002618943907.root
+/store/relval/CMSSW_3_11_0_pre5/RelValZEE/GEN-SIM-RECO/MC_311_V0-v1/0063/804450D6-DC23-E011-AD36-0026189438C9.root
+/store/relval/CMSSW_3_11_0_pre5/RelValZEE/GEN-SIM-RECO/MC_311_V0-v1/0063/148303B2-DA23-E011-8B3C-0018F3D09682.root
 
 [oval run] ==========================================
 [oval run] result: OK
@@ -50,9 +50,9 @@ dataset has 5 files:
 
 [oval diff] ================================================
 [oval diff] OVAL_ENVNAME = FullZEEIdeal
-[oval diff] TEST_RELEASE = 3_11_0_pre3
-[oval diff] TEST_GLOBAL_TAG = MC_310_V3
-[oval diff] TEST_GLOBAL_STARTUP_TAG = START310_V3
+[oval diff] TEST_RELEASE = 3_11_0_pre5
+[oval diff] TEST_GLOBAL_TAG = MC_311_V0
+[oval diff] TEST_GLOBAL_STARTUP_TAG = START311_V0
 [oval diff] TEST_GLOBAL_VERSION = v1
 [oval diff] TEST_OUTPUT_BASE = electronHistos.root
 [oval diff] TEST_OUTPUT_FILE = electronHistos.${OVAL_ENVNAME}.root
@@ -60,8 +60,8 @@ dataset has 5 files:
 [oval diff] DBS_RELEASE = CMSSW_${TEST_RELEASE}
 [oval diff] DBS_TIER = -RECO
 [oval diff] DBS_COND = ${TEST_GLOBAL_TAG}-${TEST_GLOBAL_VERSION}
-[oval diff] VAL_NEW_RELEASE = 3_11_0_pre3
-[oval diff] VAL_REF_RELEASE = 3_11_0_pre2
+[oval diff] VAL_NEW_RELEASE = 3_11_0_pre5
+[oval diff] VAL_REF_RELEASE = 3_11_0_pre3
 [oval diff] VAL_COMMENT = No electron code change.
 [oval diff] STORE_RELEASE = ${VAL_NEW_RELEASE}
 [oval diff] VAL_WEB = /afs/cern.ch/cms/Physics/egamma/www/validation
@@ -88,12 +88,7 @@ dataset has 5 files:
 [oval diff] diff number: /(?-xism:^h_\S+ has \d+ entries of mean value (\S+)$)/ ~ 10%
 [oval diff] ================================================
 
-=== olog #40 !~ oref #36 (>1)
-olog: dataset has 5 files:
----
-oref: dataset has 2 files:
-
 [oval diff] =========================================
-[oval diff] result: DIFFS
+[oval diff] result: OK
 [oval diff] =========================================
 
