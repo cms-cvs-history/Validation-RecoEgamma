@@ -36,6 +36,42 @@ def common_search(dbs_tier):
       if line.find(dbs_tier)== -1: continue
       result.append('file:'+line)
       
+  elif os.environ['DBS_STRATEGY'] == "castor":
+  
+    castor_dir = '/castor/cern.ch/cms/store/relval/'+os.environ['DBS_RELEASE']+'/'+os.environ['DBS_SAMPLE']+'/'+os.environ['DBS_TIER']+'/'+os.environ['DBS_COND']+'/'
+    if __name__ == "__main__":
+      print 'castor dir:',castor_dir
+    result = []
+    data = os.popen('rfdir '+castor_dir)
+    subdirs = data.readlines()
+    data.close()
+    datalines = []
+    for line in subdirs:
+      line = line.rstrip()
+      subdir = line.split()[8]
+      data = os.popen('rfdir '+castor_dir+'/'+subdir)
+      datalines = data.readlines()
+      for line in datalines:
+        line = line.rstrip()
+        file = line.split()[8]
+        if file != "":
+          result.append('/store/relval/'+os.environ['DBS_RELEASE']+'/'+os.environ['DBS_SAMPLE']+'/'+os.environ['DBS_TIER']+'/'+os.environ['DBS_COND']+'/'+subdir+'/'+file)
+      data.close()
+      
+  elif os.environ['DBS_STRATEGY'] == "lsf":
+  
+    dbs_path = '/'+os.environ['DBS_SAMPLE']+'/'+os.environ['DBS_RELEASE']+'-'+os.environ['DBS_COND']+'/'+os.environ['DBS_TIER']+'"'
+    if __name__ == "__main__":
+      print 'dbs path:',dbs_path
+    data = os.popen('dbs lsf --path="'+dbs_path+'"')
+    datalines = data.readlines()
+    data.close()
+    result = []
+    for line in datalines:
+      line = line.rstrip()
+      if line != "" and line[0] =="/":
+        result.append(line)
+      
   else:
   
     input = "find file"
@@ -90,9 +126,12 @@ def search():
 def search2():
   return common_search(os.environ['DBS_TIER_SECONDARY'])
 
+if not os.environ.has_key('DBS_STRATEGY'):
+  os.environ['DBS_STRATEGY'] = "search"
+if not os.environ.has_key('DBS_TIER_SECONDARY'):
+  os.environ['DBS_TIER_SECONDARY'] = ""
+
 if __name__ == "__main__":
-  if not os.environ.has_key('DBS_TIER_SECONDARY'):
-    os.environ['DBS_TIER_SECONDARY'] = ""
   if os.environ['DBS_TIER_SECONDARY'] == "":
     files = search()
     print "dataset has", len(files), "files:"
