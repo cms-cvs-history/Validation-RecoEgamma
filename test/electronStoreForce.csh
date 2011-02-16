@@ -31,10 +31,10 @@
 #============== Comand-line arguments ==================
 
 #if ( "$1" == "-f" ) then
-#  setenv STORE_FORCE "yes"
+  setenv STORE_FORCE "yes"
 #  shift
 #else
-  setenv STORE_FORCE "no"
+#  setenv STORE_FORCE "no"
 #endif
 
 if ( "$1" != "" ) then
