@@ -16,6 +16,12 @@
 #   DBS_COND , for example MC_31X_V2-v1
 #   DBS_TIER , for example RECO
 #   DBS_TIER_SECONDARY, for eventual secondary files
+#   
+#   DBS_STRATEGY:
+#     castor: use rfdir
+#     lsf: use dbs lsf
+#     search: use dbs search
+#     local: look within electronDbsDiscovery.txt
 #
 # In the three last variables, one can use wildcard *
 #===================================================================
@@ -25,7 +31,7 @@ import httplib, urllib, urllib2, types, string, os, sys
 
 def common_search(dbs_tier):
 
-  if os.environ['DBS_RELEASE'] == "LOCAL":
+  if os.environ['DBS_STRATEGY'] == "local":
   
     result = []
     for line in  open('electronDbsDiscovery.txt').readlines():
