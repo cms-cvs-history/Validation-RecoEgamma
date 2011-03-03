@@ -35,7 +35,7 @@ def common_search(dbs_tier):
   
     result = []
     for line in  open('electronDbsDiscovery.txt').readlines():
-      line = line.strip()
+      line = os.path.expandvars(line.strip())
       if line == "": continue
       if line.find(os.environ['DBS_SAMPLE'])== -1: continue
       if line.find(os.environ['DBS_COND'])== -1: continue
