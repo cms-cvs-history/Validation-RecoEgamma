@@ -8,7 +8,7 @@
 [oval run] TEST_GLOBAL_STARTUP_TAG = START311_V0
 [oval run] TEST_GLOBAL_VERSION = v1
 [oval run] TEST_OUTPUT_BASE = electronHistos.root
-[oval run] TEST_OUTPUT_FILE = electronHistos.${OVAL_ENVNAME}.root
+[oval run] TEST_HISTOS_FILE = electronHistos.${OVAL_ENVNAME}.root
 [oval run] TEST_OUTPUT_LOGS = *.${OVAL_ENVNAME}.olog
 [oval run] DBS_RELEASE = CMSSW_${TEST_RELEASE}
 [oval run] DBS_TIER = -RECO
@@ -57,7 +57,7 @@ dataset has 5 files:
 [oval diff] TEST_GLOBAL_STARTUP_TAG = START311_V0
 [oval diff] TEST_GLOBAL_VERSION = v1
 [oval diff] TEST_OUTPUT_BASE = electronHistos.root
-[oval diff] TEST_OUTPUT_FILE = electronHistos.${OVAL_ENVNAME}.root
+[oval diff] TEST_HISTOS_FILE = electronHistos.${OVAL_ENVNAME}.root
 [oval diff] TEST_OUTPUT_LOGS = *.${OVAL_ENVNAME}.olog
 [oval diff] DBS_RELEASE = CMSSW_${TEST_RELEASE}
 [oval diff] DBS_TIER = -RECO
