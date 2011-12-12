@@ -23,20 +23,22 @@ setenv RUNTYPE Central
 setenv STARTUP True
 
 
-setenv CMSSWver1 4_2_2
-setenv CMSSWver2 4_2_8
-setenv OLDRELEASE 4_2_2
-setenv NEWRELEASE 4_2_8
+
+setenv CMSSWver1 4_4_2
+setenv CMSSWver2 4_4_2
+setenv OLDRELEASE 4_4_2
+setenv NEWRELEASE 4_4_2
 setenv OLDPRERELEASE 
-setenv NEWPRERELEASE 
+setenv NEWPRERELEASE patch7
+>>>>>>> 1.97
 
 
 if ( $STARTUP == True) then
-setenv OLDGLOBALTAG START42_V11-v1
-setenv NEWGLOBALTAG START42_V12-v1
+setenv OLDGLOBALTAG START44_V7-v1
+setenv NEWGLOBALTAG START44_V9_special_111126-v1
 else
-setenv OLDGLOBALTAG MC_42_V11-v1
-setenv NEWGLOBALTAG MC_42_V12-v1
+setenv OLDGLOBALTAG START44_V7-v1
+setenv NEWGLOBALTAG START44_V9_special_111126-v1
 endif
 
 
@@ -44,21 +46,21 @@ endif
 
 #setenv OLDRELEASE ${OLDRELEASE}_${OLDPRERELEASE}
 setenv OLDRELEASE ${OLDRELEASE}
-#setenv NEWRELEASE ${NEWRELEASE}_${NEWPRERELEASE}
-setenv NEWRELEASE ${NEWRELEASE}
+setenv NEWRELEASE ${NEWRELEASE}_${NEWPRERELEASE}
+#setenv NEWRELEASE ${NEWRELEASE}
 
 #setenv WorkDir1   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver1}/src/Validation/RecoEgamma/test
 #setenv WorkDir2   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver2}_${NEWPRERELEASE}/src/Validation/RecoEgamma/test
 
 
-#setenv WorkDir1   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver1}_${OLDPRERELEASE}/src/Validation/RecoEgamma/test
-#setenv WorkDir2   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver2}_${NEWPRERELEASE}/src/Validation/RecoEgamma/test
+setenv WorkDir1   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver1}_${OLDPRERELEASE}/src/Validation/RecoEgamma/test
+setenv WorkDir2   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver2}_${NEWPRERELEASE}/src/Validation/RecoEgamma/test
 
 #setenv WorkDir1   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver1}_${OLDPRERELEASE}/src/Validation/RecoEgamma/test
 #setenv WorkDir2   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver2}/src/Validation/RecoEgamma/test
 
-setenv WorkDir1   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver1}/src/Validation/RecoEgamma/test
-setenv WorkDir2   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver2}/src/Validation/RecoEgamma/test
+#setenv WorkDir1   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver1}/src/Validation/RecoEgamma/test
+#setenv WorkDir2   /afs/cern.ch/user/n/nancy/scratch0/CMSSW/test/CMSSW_${CMSSWver2}/src/Validation/RecoEgamma/test
 
 #Name of sample (affects output directory name and htmldescription only) 
 
@@ -97,7 +99,7 @@ if ( $RUNTYPE == Local ) then
 setenv OLDFILE ${WorkDir1}/PhotonValidationRelVal${OLDRELEASE}_SingleGammaPt10.root
 setenv NEWFILE ${WorkDir2}/PhotonValidationRelVal${NEWRELEASE}_SingleGammaPt10.root
 else if ( $RUNTYPE == Central ) then
-setenv OLDFILE ${WorkDir1}/DQM_V0001_R000000001__RelValSingleGammaPt10__CMSSW_${OLDRELEASE}-${OLDGLOBALTAG}__DQM.root
+setenv OLDFILE ${WorkDir1}/DQM_V0002_R000000001__RelValSingleGammaPt10__CMSSW_${OLDRELEASE}-${OLDGLOBALTAG}__DQM.root
 setenv NEWFILE ${WorkDir2}/DQM_V0001_R000000001__RelValSingleGammaPt10__CMSSW_${NEWRELEASE}-${NEWGLOBALTAG}__DQM.root
 
 endif
@@ -111,7 +113,8 @@ setenv NEWFILE ${WorkDir2}/PhotonValidationRelVal${NEWRELEASE}_SingleGammaPt35.r
 
 else if ( $RUNTYPE == Central ) then
 
-setenv OLDFILE ${WorkDir1}/DQM_V0001_R000000001__RelValSingleGammaPt35__CMSSW_${OLDRELEASE}-${OLDGLOBALTAG}__DQM.root
+
+setenv OLDFILE ${WorkDir1}/DQM_V0002_R000000001__RelValSingleGammaPt35__CMSSW_${OLDRELEASE}-${OLDGLOBALTAG}__DQM.root
 setenv NEWFILE ${WorkDir2}/DQM_V0001_R000000001__RelValSingleGammaPt35__CMSSW_${NEWRELEASE}-${NEWGLOBALTAG}__DQM.root
 
 endif
@@ -135,7 +138,7 @@ setenv NEWFILE ${WorkDir2}/PhotonValidationRelVal${NEWRELEASE}_H130GGgluonfusion
 else if ( $RUNTYPE == Central ) then
 
 
-setenv OLDFILE ${WorkDir1}/DQM_V0001_R000000001__RelValH130GGgluonfusion__CMSSW_${OLDRELEASE}-${OLDGLOBALTAG}__DQM.root
+setenv OLDFILE ${WorkDir1}/DQM_V0002_R000000001__RelValH130GGgluonfusion__CMSSW_${OLDRELEASE}-${OLDGLOBALTAG}__DQM.root
 setenv NEWFILE ${WorkDir2}/DQM_V0001_R000000001__RelValH130GGgluonfusion__CMSSW_${NEWRELEASE}-${NEWGLOBALTAG}__DQM.root
 
 endif
@@ -149,7 +152,7 @@ setenv OLDFILE ${WorkDir1}/PhotonValidationRelVal${OLDRELEASE}_PhotonJets_Pt_10.
 setenv NEWFILE ${WorkDir2}/PhotonValidationRelVal${NEWRELEASE}_PhotonJets_Pt_10.root
 else if ( $RUNTYPE == Central ) then
 
-setenv OLDFILE ${WorkDir1}/DQM_V0001_R000000001__RelValPhotonJets_Pt_10__CMSSW_${OLDRELEASE}-${OLDGLOBALTAG}__DQM.root
+setenv OLDFILE ${WorkDir1}/DQM_V0002_R000000001__RelValPhotonJets_Pt_10__CMSSW_${OLDRELEASE}-${OLDGLOBALTAG}__DQM.root
 setenv NEWFILE ${WorkDir2}/DQM_V0001_R000000001__RelValPhotonJets_Pt_10__CMSSW_${NEWRELEASE}-${NEWGLOBALTAG}__DQM.root
 
 endif
