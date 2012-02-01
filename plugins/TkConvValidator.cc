@@ -97,8 +97,8 @@
  **
  **
  **  $Id: TkConvValidator
- **  $Date: 2011/05/20 13:55:42 $
- **  $Revision: 1.1 $
+ **  $Date: 2011/12/22 20:44:37 $
+ **  $Revision: 1.4 $
  **  \author N.Marinelli - Univ. of Notre Dame
  **
  ***/
@@ -511,16 +511,15 @@ void  TkConvValidator::beginJob() {
 
 
     histname="EoverPtracks";
-    h_EoverPTracks_[0][0] = dbe_->book1D(histname+"All"," photons conversion E/p: all Ecal ",100, 0., 5.);
-    h_EoverPTracks_[0][1] = dbe_->book1D(histname+"Barrel"," photons conversion E/p: Barrel Ecal",100, 0., 5.);
-    h_EoverPTracks_[0][2] = dbe_->book1D(histname+"Endcap"," photons conversion E/p: Endcap Ecal ",100, 0., 5.);
-    h_EoverPTracks_[1][0] = dbe_->book1D(histname+"All_Ass"," photons conversion E/p: all Ecal ",100, 0., 5.);
-    h_EoverPTracks_[1][1] = dbe_->book1D(histname+"Barrel_Ass"," photons conversion E/p: Barrel Ecal",100, 0., 5.);
-    h_EoverPTracks_[1][2] = dbe_->book1D(histname+"Endcap_Ass"," photons conversion E/p: Endcap Ecal ",100, 0., 5.);
-    h_EoverPTracks_[2][0] = dbe_->book1D(histname+"All_Fakes"," photons conversion E/p: all Ecal ",100, 0., 5.);
-    h_EoverPTracks_[2][1] = dbe_->book1D(histname+"Barrel_Fakes"," photons conversion E/p: Barrel Ecal",100, 0., 5.);
-    h_EoverPTracks_[2][2] = dbe_->book1D(histname+"Endcap_Fakes"," photons conversion E/p: Endcap Ecal ",100, 0., 5.);
-
+    h_EoverPTracks_[0][0] = dbe_->book1D(histname+"All"," photons conversion E/p: all Ecal ",       eoverpBin, eoverpMin, eoverpMax );
+    h_EoverPTracks_[0][1] = dbe_->book1D(histname+"Barrel"," photons conversion E/p: Barrel Ecal",  eoverpBin, eoverpMin,  eoverpMax);
+    h_EoverPTracks_[0][2] = dbe_->book1D(histname+"Endcap"," photons conversion E/p: Endcap Ecal ", eoverpBin, eoverpMin,  eoverpMax);
+    h_EoverPTracks_[1][0] = dbe_->book1D(histname+"All_Ass"," photons conversion E/p: all Ecal ",   eoverpBin, eoverpMin,  eoverpMax);
+    h_EoverPTracks_[1][1] = dbe_->book1D(histname+"Barrel_Ass"," photons conversion E/p: Barrel Ecal", eoverpBin, eoverpMin,  eoverpMax);
+    h_EoverPTracks_[1][2] = dbe_->book1D(histname+"Endcap_Ass"," photons conversion E/p: Endcap Ecal ", eoverpBin, eoverpMin,  eoverpMax);
+    h_EoverPTracks_[2][0] = dbe_->book1D(histname+"All_Fakes"," photons conversion E/p: all Ecal ",     eoverpBin, eoverpMin,  eoverpMax);
+    h_EoverPTracks_[2][1] = dbe_->book1D(histname+"Barrel_Fakes"," photons conversion E/p: Barrel Ecal", eoverpBin, eoverpMin,  eoverpMax);
+    h_EoverPTracks_[2][2] = dbe_->book1D(histname+"Endcap_Fakes"," photons conversion E/p: Endcap Ecal ", eoverpBin, eoverpMin,  eoverpMax);
 
 
     h2_convVtxRrecVsTrue_ =  dbe_->book2D("h2ConvVtxRrecVsTrue","Photon Reco conversion vtx R rec vs true" ,rBin,rMin, rMax,rBin,rMin, rMax);
@@ -1189,7 +1188,6 @@ void TkConvValidator::analyze( const edm::Event& e, const edm::EventSetup& esup 
       dPhiTracksAtVtx = p2AtVtx.phi() - p1AtVtx.phi();
 
 
-    math::XYZVector convMom =  tk1->momentum() + tk2->momentum();
     math::XYZVectorF refittedMom =  aConv.refittedPairMomentum();
 
 
@@ -1807,8 +1805,8 @@ math::XYZVector TkConvValidator::recalculateMomentumAtFittedVertex ( const Magne
   ReferenceCountingPointer<BoundDisk>      theDisk_(new BoundDisk( Surface::PositionType( 0, 0, vtx.position().z()), rot,
 								   SimpleDiskBounds( 0,  sqrt(vtx.position().perp2()), -0.001, 0.001)));
 
-  TrajectoryStateTransform transformer;
-  const TrajectoryStateOnSurface myTSOS = transformer.innerStateOnSurface(*tk, trackerGeom, &mf);
+  
+  const TrajectoryStateOnSurface myTSOS = trajectoryStateTransform::innerStateOnSurface(*tk, trackerGeom, &mf);
   PropagatorWithMaterial propag( anyDirection, 0.000511, &mf );
   TrajectoryStateOnSurface  stateAtVtx;
   stateAtVtx = propag.propagate(myTSOS, *theBarrel_);
