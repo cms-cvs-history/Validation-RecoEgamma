@@ -97,8 +97,8 @@
  **
  **
  **  $Id: TkConvValidator
- **  $Date: 2011/12/22 20:44:37 $
- **  $Revision: 1.4 $
+ **  $Date: 2012/12/26 13:37:05 $
+ **  $Revision: 1.6 $
  **  \author N.Marinelli - Univ. of Notre Dame
  **
  ***/
@@ -1053,8 +1053,8 @@ void TkConvValidator::analyze( const edm::Event& e, const edm::EventSetup& esup 
 	tc1.push_back(tfrb1);
 	tc2.push_back(tfrb2);
 	bool isAssociated = false;
-	reco::SimToRecoCollection q1 = theTrackAssociator_->associateSimToReco(tc1,theConvTP_,&e);
-	reco::SimToRecoCollection q2 = theTrackAssociator_->associateSimToReco(tc2,theConvTP_,&e);
+	reco::SimToRecoCollection q1 = theTrackAssociator_->associateSimToReco(tc1,theConvTP_,&e,&esup);
+	reco::SimToRecoCollection q2 = theTrackAssociator_->associateSimToReco(tc2,theConvTP_,&e,&esup);
 	//try {
 	  std::vector<std::pair<RefToBase<reco::Track>, double> > trackV1, trackV2;
 
@@ -1422,8 +1422,8 @@ void TkConvValidator::analyze( const edm::Event& e, const edm::EventSetup& esup 
       if ( theConvTP_.size() < 2 )   continue;
 
       //associated = false;
-      reco::RecoToSimCollection p1 =  theTrackAssociator_->associateRecoToSim(tc1,theConvTP_,&e);
-      reco::RecoToSimCollection p2 =  theTrackAssociator_->associateRecoToSim(tc2,theConvTP_,&e);
+      reco::RecoToSimCollection p1 =  theTrackAssociator_->associateRecoToSim(tc1,theConvTP_,&e,&esup);
+      reco::RecoToSimCollection p2 =  theTrackAssociator_->associateRecoToSim(tc2,theConvTP_,&e,&esup);
       try{
 	std::vector<std::pair<TrackingParticleRef, double> > tp1 = p1[tk1];
 	std::vector<std::pair<TrackingParticleRef, double> > tp2 = p2[tk2];
@@ -1468,8 +1468,8 @@ void TkConvValidator::analyze( const edm::Event& e, const edm::EventSetup& esup 
           TrackingParticleRef tp (TPHandleForFakeRate,i);
             theConvTP_.push_back( tp );
         }
-        reco::RecoToSimCollection p1incl =  theTrackAssociator_->associateRecoToSim(tc1,theConvTP_,&e);
-        reco::RecoToSimCollection p2incl =  theTrackAssociator_->associateRecoToSim(tc2,theConvTP_,&e);
+        reco::RecoToSimCollection p1incl =  theTrackAssociator_->associateRecoToSim(tc1,theConvTP_,&e,&esup);
+        reco::RecoToSimCollection p2incl =  theTrackAssociator_->associateRecoToSim(tc2,theConvTP_,&e,&esup);
 
 
       for ( std::vector<PhotonMCTruth>::const_iterator mcPho=mcPhotons.begin(); mcPho !=mcPhotons.end(); mcPho++) {
@@ -1512,8 +1512,8 @@ void TkConvValidator::analyze( const edm::Event& e, const edm::EventSetup& esup 
         if ( theConvTP_.size() < 2 )   continue;
 
         //associated = false;
-        reco::RecoToSimCollection p1 =  theTrackAssociator_->associateRecoToSim(tc1,theConvTP_,&e);
-        reco::RecoToSimCollection p2 =  theTrackAssociator_->associateRecoToSim(tc2,theConvTP_,&e);
+        reco::RecoToSimCollection p1 =  theTrackAssociator_->associateRecoToSim(tc1,theConvTP_,&e,&esup);
+        reco::RecoToSimCollection p2 =  theTrackAssociator_->associateRecoToSim(tc2,theConvTP_,&e,&esup);
 
 
 
@@ -1796,14 +1796,16 @@ math::XYZVector TkConvValidator::recalculateMomentumAtFittedVertex ( const Magne
 
   math::XYZVector result;
   Surface::RotationType rot;
-  ReferenceCountingPointer<BoundCylinder>  theBarrel_(new BoundCylinder( Surface::PositionType(0,0,0), rot,
-									 SimpleCylinderBounds(  sqrt(vtx.position().perp2())-0.001,
-												sqrt(vtx.position().perp2())+0.001,
-												-fabs(vtx.position().z()),
-												fabs(vtx.position().z()))));
+  auto scp = new SimpleCylinderBounds(  sqrt(vtx.position().perp2())-0.001f,
+					sqrt(vtx.position().perp2())+0.001f,
+					-fabs(vtx.position().z()),
+					 fabs(vtx.position().z())
+                                     );
+  ReferenceCountingPointer<Cylinder>  theBarrel_(new Cylinder(Cylinder::computeRadius(*scp), Surface::PositionType(0,0,0), rot,scp));
 
-  ReferenceCountingPointer<BoundDisk>      theDisk_(new BoundDisk( Surface::PositionType( 0, 0, vtx.position().z()), rot,
-								   SimpleDiskBounds( 0,  sqrt(vtx.position().perp2()), -0.001, 0.001)));
+  ReferenceCountingPointer<Disk>      theDisk_(new Disk( Surface::PositionType( 0, 0, vtx.position().z()), rot,
+								   new SimpleDiskBounds( 0,  sqrt(vtx.position().perp2()), -0.001, 0.001) )
+                                              );
 
   
   const TrajectoryStateOnSurface myTSOS = trajectoryStateTransform::innerStateOnSurface(*tk, trackerGeom, &mf);
